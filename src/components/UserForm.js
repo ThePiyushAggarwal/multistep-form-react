@@ -16,8 +16,6 @@ function UserForm() {
     bio: '',
   })
 
-  const { firstName, lastName, email, occupation, city, bio } = formData
-
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -44,9 +42,7 @@ function UserForm() {
               <FormUserDetails
                 nextStep={nextStep}
                 onChange={onChange}
-                firstName={firstName}
-                lastName={lastName}
-                email={email}
+                formData={formData}
               />
             )
           case 2:
@@ -55,13 +51,17 @@ function UserForm() {
                 nextStep={nextStep}
                 prevStep={prevStep}
                 onChange={onChange}
-                occupation={occupation}
-                city={city}
-                bio={bio}
+                formData={formData}
               />
             )
           case 3:
-            return <Confirm nextStep={nextStep} prevStep={prevStep} />
+            return (
+              <Confirm
+                nextStep={nextStep}
+                prevStep={prevStep}
+                formData={formData}
+              />
+            )
           case 4:
             return <Success setStep={setStep} />
           default:
